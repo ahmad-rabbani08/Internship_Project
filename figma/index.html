@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GYM24 - Premium Fitness</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-yellow: #f8ff00;
+            --bg-black: #000000;
+            --card-gray: #111111;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+        }
+
+        /* Basic Reset */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: var(--bg-black); 
+            color: var(--text-white); 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo { font-family: 'Archivo Black', sans-serif; text-transform: none; }
+
+        /* --- NAVIGATION --- */
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 30px 10%; 
+            position: absolute; 
+            width: 100%; 
+            z-index: 100; 
+        }
+        .logo { font-size: 22px; letter-spacing: -1px; }
+        .logo span { color: var(--primary-yellow); }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { 
+            text-decoration: none; 
+            color: var(--text-white); 
+            font-size: 13px; 
+            font-weight: 500; 
+            opacity: 0.8;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { opacity: 1; color: var(--primary-yellow); }
+
+        /* --- HERO SECTION --- */
+        .hero { 
+            height: 100vh; 
+            background: linear-gradient(to right, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.1)), 
+            url('images/image0.jpg') no-repeat center center/cover; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 10%; 
+        }
+        .hero-content { max-width: 600px; }
+        .hero-content h1 { 
+            font-size: clamp(40px, 8vw, 85px); 
+            line-height: 1; 
+            margin-bottom: 40px; 
+            letter-spacing: -2px;
+        }
+        .btn-detailed { 
+            background-color: var(--primary-yellow); 
+            color: black; 
+            padding: 18px 50px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 16px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn-detailed:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(248, 255, 0, 0.4); }
+
+        /* --- REASONS SECTION --- */
+        .reasons { padding: 120px 10%; }
+        .section-title { font-size: 48px; margin-bottom: 80px; letter-spacing: -1px; }
+        .features-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 80px 120px; 
+        }
+        .feature-item { display: flex; gap: 25px; align-items: flex-start; }
+        .feature-icon { font-size: 32px; color: var(--primary-yellow); }
+        .feature-text h3 { font-size: 20px; margin-bottom: 10px; }
+        .feature-text p { color: var(--text-gray); font-size: 15px; max-width: 350px; }
+
+        /* --- MEMBERSHIP SECTION --- */
+        .membership { padding: 100px 10%; text-align: center; }
+        .membership h2 { margin-bottom: 80px; }
+        .pricing-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+        }
+        .price-card { 
+            background-color: var(--card-gray); 
+            padding: 50px 40px; 
+            border-radius: 24px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            border: 1px solid #222;
+        }
+        .price-card h4 { font-family: 'Archivo Black', sans-serif; font-size: 18px; margin-bottom: 10px; }
+        .price { font-family: 'Archivo Black', sans-serif; font-size: 36px; margin-bottom: 40px; }
+        .feature-list { list-style: none; text-align: left; width: 100%; margin-bottom: 50px; flex-grow: 1; }
+        .feature-list li { 
+            font-size: 14px; 
+            margin-bottom: 15px; 
+            display: flex; 
+            gap: 12px; 
+            color: #efefef;
+            line-height: 1.4;
+        }
+        .feature-list i { color: var(--text-gray); font-size: 16px; margin-top: 2px; }
+        .btn-buy { 
+            background-color: var(--primary-yellow); 
+            color: black; 
+            padding: 12px 60px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            font-size: 14px; 
+        }
+
+        /* --- ABOUT US SECTION --- */
+        .about { padding: 120px 10%; display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: 80px; }
+        .about-text h2 { margin-bottom: 40px; }
+        .about-text p { color: var(--text-gray); font-size: 16px; line-height: 1.8; margin-bottom: 25px; }
+        
+        .slider-wrapper { position: relative; }
+        .slider-container { width: 100%; aspect-ratio: 16/10; overflow: hidden; border-radius: 24px; }
+        .slider { display: flex; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .slider img { width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; }
+        
+        .slider-controls { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; }
+        .dots { display: flex; gap: 10px; }
+        .dot { width: 45px; height: 4px; background: #333; cursor: pointer; transition: 0.3s; }
+        .dot.active { background: var(--primary-yellow); }
+        .arrows { display: flex; gap: 20px; font-size: 20px; cursor: pointer; }
+        .arrows i { transition: 0.3s; opacity: 0.6; }
+        .arrows i:hover { opacity: 1; color: var(--primary-yellow); }
+
+        /* --- TRAINERS SECTION --- */
+        .trainers { padding: 120px 10%; text-align: center; }
+        .trainers h2 { margin-bottom: 80px; }
+        .trainers-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 30px; 
+        }
+        .trainer-card { 
+            background-color: var(--card-gray); 
+            padding: 20px; 
+            border-radius: 24px; 
+            text-align: center; 
+            border: 1px solid #222;
+        }
+        .trainer-card img { 
+            width: 100%; 
+            aspect-ratio: 1/1.2; 
+            object-fit: cover; 
+            border-radius: 18px; 
+            margin-bottom: 20px; 
+        }
+        .trainer-card h4 { font-size: 16px; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .social-icons { display: flex; justify-content: center; gap: 12px; }
+        .social-icons i { 
+            font-size: 14px; 
+            border: 1px solid #333; 
+            border-radius: 50%; 
+            width: 40px; 
+            height: 40px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            transition: 0.3s;
+        }
+        .social-icons i:hover { border-color: var(--primary-yellow); color: var(--primary-yellow); }
+
+        /* --- FOOTER --- */
+        footer { 
+            padding: 100px 10% 60px; 
+            display: grid; 
+            grid-template-columns: 1.5fr 1fr 1fr; 
+            gap: 60px; 
+            border-top: 1px solid #1a1a1a; 
+        }
+        .footer-col .logo { margin-bottom: 30px; display: block; }
+        .footer-col p { color: var(--text-gray); font-size: 14px; line-height: 1.8; max-width: 300px; }
+        .footer-col h4 { font-size: 20px; margin-bottom: 35px; }
+        .contact-info { list-style: none; }
+        .contact-info li { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            color: var(--text-white); 
+            font-size: 15px; 
+            margin-bottom: 20px; 
+            opacity: 0.9;
+        }
+        .contact-info i { color: var(--text-gray); font-size: 18px; }
+        .footer-socials { display: flex; gap: 15px; margin-top: 30px; }
+        .footer-socials i { 
+            width: 45px; 
+            height: 45px; 
+            border: 1px solid #333; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 16px; 
+            transition: 0.3s;
+        }
+        .footer-socials i:hover { background: var(--primary-yellow); color: black; border-color: var(--primary-yellow); }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .pricing-grid { grid-template-columns: repeat(2, 1fr); }
+            .trainers-grid { grid-template-columns: repeat(2, 1fr); }
+            footer { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 850px) {
+            .about, .features-grid, footer { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">GYM<span>24</span></div>
+        <div class="nav-links">
+            <a href="#advantages">Advantages</a>
+            <a href="#membership">Membership</a>
+            <a href="#about">About</a>
+            <a href="#trainers">Trainers</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Free trial session <br>with a trainer</h1>
+            <a href="#membership" class="btn-detailed">Detailed</a>
+        </div>
+    </section>
+
+    <section class="reasons" id="advantages">
+        <h2 class="section-title">Reasons to join</h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-ruler-combined feature-icon"></i>
+                <div class="feature-text">
+                    <h3>15000 sq.m.</h3>
+                    <p>A spacious gym for sports – a safe distance between exercise machines</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-dumbbell feature-icon"></i>
+                <div class="feature-text">
+                    <h3>More than 200 equipment</h3>
+                    <p>No queues at the simulators. Premium equipment from LifeStyle, Hammer Strength, TechnoGym.</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-person-running feature-icon"></i>
+                <div class="feature-text">
+                    <h3>4 fitness zones</h3>
+                    <p>From cardio to functional and cycle. Separate area for boxing and mixed martial arts</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-clock feature-icon"></i>
+                <div class="feature-text">
+                    <h3>Round-the-clock operation</h3>
+                    <p>The gym is open 24 hours a day, also works on all holidays and weekends</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="membership" id="membership">
+        <h2 class="section-title">Gym membership</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h4>Pass 'Trial'</h4><p class="price">$ 0</p>
+                <ul class="feature-list">
+                    <li><i class="fa-regular fa-circle-check"></i> Access to the gym from 8:00 to 14:00</li>
+                    <li><i class="fa-regular fa-circle-check"></i> The trainer on duty will introduce you to the gym</li>
+                </ul>
+                <a href="#" class="btn-buy">Buy</a>
+            </div>
+            <div class="price-card">
+                <h4>Pass 'Easy Start'</h4><p class="price">$ 119</p>
+                <ul class="feature-list">
+                    <li><i class="fa-regular fa-circle-check"></i> Visit without restrictions 24/7</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Individual training program</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Access to the VTRAINER application</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Trainer support</li>
+                </ul>
+                <a href="#" class="btn-buy">Buy</a>
+            </div>
+            <div class="price-card">
+                <h4>Pass 'Free Time'</h4><p class="price">$ 49</p>
+                <ul class="feature-list">
+                    <li><i class="fa-regular fa-circle-check"></i> The entrance time to the gym is from 14:00 to 16:00</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Without suspension of gym membership</li>
+                    <li><i class="fa-regular fa-circle-check"></i> The trainer on duty will introduce you to the gym</li>
+                </ul>
+                <a href="#" class="btn-buy">Buy</a>
+            </div>
+            <div class="price-card">
+                <h4>Pass '1 Month 24/7'</h4><p class="price">$ 85</p>
+                <ul class="feature-list">
+                    <li><i class="fa-regular fa-circle-check"></i> Visit without restrictions 24/7</li>
+                    <li><i class="fa-regular fa-circle-check"></i> The trainer on duty will introduce you to the gym</li>
+                </ul>
+                <a href="#" class="btn-buy">Buy</a>
+            </div>
+            <div class="price-card">
+                <h4>Pass 'In Shape (AM)'</h4><p class="price">$ 165</p>
+                <ul class="feature-list">
+                    <li><i class="fa-regular fa-circle-check"></i> Training in mini-groups until 14:00</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Without suspension of gym membership</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Classes with a trainer in a mini-group 3 times a week</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Trainer support</li>
+                </ul>
+                <a href="#" class="btn-buy">Buy</a>
+            </div>
+            <div class="price-card">
+                <h4>Pass 'In Shape (PM)'</h4><p class="price">$ 195</p>
+                <ul class="feature-list">
+                    <li><i class="fa-regular fa-circle-check"></i> Training in mini-groups until 17:00</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Without suspension of gym membership</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Classes with a trainer in a mini-group 3 times a week</li>
+                    <li><i class="fa-regular fa-circle-check"></i> Trainer support</li>
+                </ul>
+                <a href="#" class="btn-buy">Buy</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-text">
+            <h2 class="section-title">About us</h2>
+            <p>Gym24 is a leading fitness center located near Grushevka metro station, offering over 1500 sq. m of space dedicated to top-of-the-line workout equipment from leading brands such as Hammer Strength, Life Fitness, and TechnoGym.</p>
+            <p>With affordable membership options, Gym24 is accessible to everyone who wants to reach their fitness goals, whether it's building strength, increasing endurance, or losing weight.</p>
+            <p>Certified trainers at Gym24 provide expert guidance and support to develop personalized workout plans tailored to each individual's needs and goals.</p>
+        </div>
+        <div class="slider-wrapper">
+            <div class="slider-container">
+                <div class="slider" id="mainSlider">
+                    <img src="images/image9.jpg" alt="Gym 1">
+                    <img src="images/image10.png" alt="Gym 2">
+                    <img src="images/image11.jpg" alt="Gym 3">
+                    
+                </div>
+            </div>
+            <div class="slider-controls">
+                <div class="dots" id="dotContainer">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="arrows">
+                    <i class="fa-solid fa-arrow-left" onclick="moveSlide(-1)"></i>
+                    <i class="fa-solid fa-arrow-right" onclick="moveSlide(1)"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trainers" id="trainers">
+        <h2 class="section-title">Trainers staff</h2>
+        <div class="trainers-grid">
+            <div class="trainer-card">
+                <img src="images/image1.png" alt="Victoria">
+                <h4>Victoria Shurpik</h4>
+                <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="trainer-card">
+                <img src="images/image2.png" alt="Elizabeth">
+                <h4>Elizabeth Lavrinenko</h4>
+                <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="trainer-card">
+                <img src="images/image3.png" alt="Ivan">
+                <h4>Ivan Gladkikh</h4>
+                <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="trainer-card">
+                <img src="images/image4.png" alt="Lyudmila">
+                <h4>Lyudmila Sabilo</h4>
+                <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="trainer-card">
+                <img src="images/image5.png" alt="Evgeny">
+                <h4>Evgeny Gurkov</h4>
+                <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="trainer-card">
+                <img src="images/image6.png" alt="Anatoly">
+                <h4>Anatoly Prytytsky</h4>
+                <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="trainer-card">
+                <img src="images/image7.png" alt="Victor">
+                <h4>Victor Ludkovich</h4>
+                <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div>
+            </div>
+            <div class="trainer-card">
+                <img src="images/image8.png" alt="Maria">
+                <h4>Maria Masyak</h4>
+                <div class="social-icons"><i class="fab fa-instagram"></i><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-col">
+            <div class="logo">GYM<span>24</span></div>
+            <p>Build strength and confidence at our gym with state-of-the-art equipment, personalized training, and a motivating community.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Address</h4>
+            <ul class="contact-info">
+                <li>Republic of Belarus<br>Minsk city<br>Dzerzhinsky Avenue 15</li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <ul class="contact-info">
+                <li><i class="fa-solid fa-phone"></i> +375(44)-777-24-12</li>
+                <li><i class="fa-solid fa-envelope"></i> gym24@gmail.com</li>
+            </ul>
+            <div class="footer-socials">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        const slider = document.getElementById('mainSlider');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = 3;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === slideIndex));
+        }
+
+        function moveSlide(n) {
+            slideIndex = (slideIndex + n + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        // Add click events to dots
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                slideIndex = i;
+                updateSlider();
+            });
+        });
+
+        // Auto-slide every 6 seconds
+        setInterval(() => moveSlide(1), 6000);
+    </script>
+
+</body>
+</html>
